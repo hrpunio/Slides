@@ -1,0 +1,688 @@
+%& --translate-file=il2-pl
+%
+% http://www.ip.ethz.ch/education/techpolicy_seminar
+\documentclass[a4,portrait]{seminar}
+\usepackage{iwona,polski}
+\usepackage{ragged2e,array}
+\RequirePackage{graphics,color,ifpdf}
+%%
+\slidewidth=31.0cm  %% szeroko¶æ slajdu
+\slideheight=25.0cm %% wysoko¶æ slajdu
+%%%
+\renewcommand{\slideleftmargin}{6mm}
+\renewcommand{\sliderightmargin}{6mm}
+\renewcommand{\slidetopmargin}{6mm} %%%
+\renewcommand{\slidebottommargin}{1mm}
+\renewcommand{\slidefuzz}{9pt}
+%%
+\renewcommand\labelitemi{\TO}
+\setlength{\itemsep}{0pt}
+%%
+%%\slidewidth=22.0cm \slideheight=17.0cm % do ew. zmiany ==> landscape
+\slidesmag{4}
+\definecolor{LightGreen}{rgb}{0.78,0.90,0.76}
+\definecolor{javadocblue}{rgb}{0,.5,.1}
+\definecolor{lightblue}{rgb}{0,.5,.7}
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+\definecolor{xxlightblue}{rgb}{0.87,0.91,0.82}%%{.8,.9,.9}
+%\definecolor{LightGreen}{rgb}{0.78,0.90,0.76}
+\def\?{\phantom0}
+\definecolor{javadocblue}{rgb}{.1,.1,.5}
+\definecolor{lightblue}{rgb}{0,.5,.7}
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+\let\OriSection\section \let\OriSubSection\subsection
+\def\section#1{\OriSection{\color{javadocblue}{#1}}}
+\def\subsection#1{\OriSubSection{\color{lightblue}{#1}}}
+\pagecolor{LightGreen} % t³o
+\slideframewidth=.4pt
+\ifpdf % to fix problems making landscape seminar pdfs
+\pdfpagewidth=330truemm
+%%%\pdfpagewidth=210truemm
+\pdfpageheight=297truemm
+%%%\pdfpageheight=330truemm
+\pdfhorigin=3.4truein
+\pdfvorigin=1truein
+\fi
+\setcounter{secnumdepth}{-1} % na wszelki wypadek
+\raggedbottom
+\raggedright
+%
+\pagestyle{empty}
+\newcommand{\source}[1]{\par \begin{small}#1\end{small}}
+\newcommand{\heading}[1]{%
+  \begin{center}
+    \large\bf #1%
+  \end{center}
+  \vspace{1ex minus 1ex}}
+%%
+%%
+\def\Blstress#1{\textbf{\color{javadocblue}#1}}
+\def\Clstress#1{\textbf{\color{darkgreen}#1}}
+\newcommand\acro[1]{\textsc{#1}}
+\newcommand{\SITI}{\acro{SI/TI}}
+\def\xfrac#1#2{#1\big/#2}
+\newcommand{\cov}{\textrm{cov}}
+\newcommand{\var}{\textrm{var}}
+\newcommand\factor[1]{\index{#1}\acro{#1}} %%%
+\newcommand{\FFx}{\acro{FF}}
+\newcommand\semindex[1]{\index{#1}\acro{#1}}
+\usepackage{graphicx}
+\usepackage{url}
+\raggedright
+%%\setcounter{secnumdepth}{-1}
+%%
+%\def\TO{{\tt ->}}
+\def\TO{$\to$}
+\def\Stress#1{\textbf{#1}}
+\def\strong#1{\textbf{#1}}\let\Strong \strong
+\def\STRONG#1{\textbf{#1}}
+\def\stress#1{\emph{#1}}
+\title{MODELOWANIE SATYSFAKCJI, U¯YTECZNO¦CI\\ I~WYKORZYSTANIA OPROGRAMOWANIA\\ OPEN SOURCE}
+\author{Tomasz Przechlewski}
+\date{}
+%\institution{Uniwersytet Gdañski}
+%\email{tomasz@gnu.univ.gda.pl}
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\maketitle
+%%%%%%%%%%%
+\begin{slide}
+%%%%%%%%%%%%%
+\begin{minipage}{.34\hsize}
+
+  %\hbox to\textwidth{\hss\includegraphics[width=1\hsize]{kakovin}}%
+\begin{flushright}
+  \hbox{\kern10mm\includegraphics[width=1\hsize]{kakovin}\kern10mm}
+  {\tiny
+  \hbox{\texttt{\kern10mm https://www.flickr.com/photos/tprzechlewski/2884966649/}}}%
+\end{flushright}
+
+\end{minipage}
+%%%%%%%%%%%%%%
+%%\kern40mm
+%%%%%%
+\begin{minipage}{.5\hsize}
+\vbox to50mm{\vss
+\begin{flushright}\bf
+  %%
+  Katalogowanie zdjêæ i metadane
+  %%albo\\
+  %%\colorbox{xxlightblue}{\emph{Mój sposób na katalogowanie zdjêæ}}\\
+  %%\colorbox{xxlightblue}{\emph{(podró¿ sentymentalna)}}\\
+%%
+\par \vskip4mm
+\colorbox{xxlightblue}{Tomasz Przechlewski}
+%%\colorbox{xxlightblue}{P\`uck\`o (P\`cczi kr\'ez), Str\"emiannik 2017}
+\end{flushright}
+}
+%%
+\end{minipage}
+\end{slide}
+
+\begin{slide}
+  \subsection{Metadane}
+  Informacja na temat informacji!
+  
+  Microsoft Office umo¿liwia dodanie metadanych do dokumentów.
+  
+  Metadane mo¿na zapisywaæ w~dokumentach HTML w~znacznikach meta/title
+
+\begin{verbatim}
+<meta name="Keywords" content="digitalizacja, skanowanie, biblioteka, biblioteka cyfrowa, prawa autorskie, reprodukcja, bibliotekarstwo, biblioteka 2.0, dlibra">
+<meta name="Description" content="Forum spo³eczno¶ci i bibliotekarzy cyfrowych. Wszystko co mo¿e siê przydaæ do stworzenia biblioteki cyfrowej.">
+<title>Biblioteka 2.0 :: Zobacz temat - Biblioteka 3.0 / Semantyczna biblioteka</title>
+...
+\end{verbatim}
+
+  U¿yteczno¶æ takich prostych metadanych jest ograniczona poniewa¿:
+
+  --~Mo¿na opisywaæ tylko dokumenty i~to takie, które mo¿emy modyfikowaæ
+  
+  --~Zbiór metadanych to zbiór napisów (niejednoznaczno¶æ)
+
+  Wymagania nt metadanych: Otwarto¶æ (standardy); Rozszerzalno¶æ (wsparcie dla w³asnych schematów);
+  Uniwersalno¶æ (ró¿ne dane/formaty); Solidno¶æ (dane/metadane musz± byæ \emph{in sync\/})
+
+\end{slide}
+
+\begin{slide}
+  \subsection{Inteligentne dane}
+
+  Inteligentne dane (Smart Data) / Samodzielno¶æ informacji (Information Independence)
+
+  \begin{small}
+  Samodzielno¶æ w sensie: niezale¿no¶æ od aplikacji, która dane przetwarza:
+  \emph{smarts are in the data not in the applications\/}
+  \end{small}
+  
+  \begin{center}
+  \includegraphics[bb=110 90 600 375,clip,page=5,width=.8\textwidth]{../PDF_workshop_XMP_Chase_Adobe.pdf}
+  \end{center}
+
+  ¬ród³o: \emph{The Semantic Web: A Guide to the Future of XML, Web Services, and Knowledge Management},
+  Wiley Technology Publishing, June 2003 (Ed Chase, \emph{PDF and Metadata}, Adobe Systems, Inc. 2004.)
+  
+\end{slide}
+
+
+\begin{slide}
+  \subsection{Warstwy wiedzy (Layers of Wisdom)}
+
+  The Semantic Spectrum: Layers of Wisdom
+
+  \begin{center}
+      \includegraphics[bb=50 40 600 440,clip,page=6,width=.725\textwidth]{../PDF_workshop_XMP_Chase_Adobe.pdf}
+    \end{center}
+
+  ¬ród³o: Ed Chase, \emph{PDF and Metadata}, Adobe Systems, Inc. 2004. 
+
+\end{slide}
+
+
+\begin{slide}
+  \subsection{Resource Description Framework (RDF)}
+  
+  Mo¿liwe jest opisywanie nie tylko dokumentów
+
+  Rozszerzalny
+  
+  Serializowany (zapisywany) w~formacie XML
+
+  \colorbox{xxlightblue}{\vbox{
+  Zasoby
+  
+  Zasób (\emph{resource\/}) obiekt opisywany nie musi byæ dokumentem,
+  mo¿e byæ dowolnym obiektem (fizycznie istniej±cym lub abstrakcyjnym)
+
+  Zasoby mog± byæ identyfikowane przez URI (lub napis)
+  }}
+    
+  Universal Resource Identifier:
+
+\begin{verbatim}
+http://purl.org/dc/elements/1.1/creator
+\end{verbatim}
+  
+  Przestrzeñ nazw
+
+\begin{verbatim}
+http://purl.org/dc/elements/1.1/
+\end{verbatim}
+
+  Nazwa lokalna
+
+\begin{verbatim}
+creator
+\end{verbatim}
+  
+Identyfikator przestrzeni nazw
+
+\begin{verbatim}
+dc
+\end{verbatim}
+  
+Zapis skrócony
+
+\begin{verbatim}
+dc:creator
+\end{verbatim}
+\end{slide}
+
+
+\begin{slide}
+  \subsection{Resource Description Framework cd.}
+
+  Metadane zapisujemy w postaci zdañ:
+  
+  Podmiot (\emph{Subject\/}) + W³asno¶æ (\emph{Property\/}) +
+  Dope³nienie (\emph{Object\/})
+
+  Podmiot/W³asno¶æ = zasób (tzn. co¶ identyfikowanego przez URI)
+
+  Dope³nienie = napis lub zasób
+
+  \includegraphics[width=.75\textwidth]{FiodorRDF.pdf}
+
+  
+  RDF nie ma ¿adnej semantyki, do tego potrzebne s± \emph{uzgodnione schematy}
+  %%takie jak \emph{Dublin Core}
+
+  Schemat RDF: przestrzeñ nazw +
+  zbiór zasobów (w~tym w³asno¶ci) +
+  interpretacja zasobów 
+\end{slide}
+
+
+\begin{slide}
+  \subsection{Uzgodnione schematy}
+  
+  \textbf{Dublin Core Metadata Initative}
+  
+  Namespace URI http://purl.org/dc/elements/1.1/
+  
+  Elements  (15) Title Creator Description
+
+  \textbf{Exif}
+
+  Exchangable Image File Format for Digital Still
+  Cameras. Wykorzystywany przez producentów aparatów
+  cyfrowych. Metadane Exif mog± zawieraæ: opis zdjêcia (rozdzielczo¶æ,
+  wielko¶æ, czas wykonania); dane aparatu (producent/model, wersja
+  oprogramowania); ustawienia aparatu (przys³onê, czas, tryb,
+  ogniskow±, itd.); opis bibliografixzny (prawa autorskie, opis,
+  autor); dane geograficzne.
+
+\begin{verbatim}  
+exiftool -all PLIK
+\end{verbatim} 
+
+\textbf{XMP} (ISO 16684-1:2012)
+
+Standard wykorzystuj±cy model RDF. XMP zawiera DC/Exif
+oraz kilkana¶cie innych schematów metadanych.
+Rozszerzalny o~w³asne schematy.
+
+\colorbox{xxlightblue}{\vbox{
+XMP was designed to be easily extensible by the addition 
+of custom namespaces. If your metadata needs are not
+already covered by the core namespaces,
+you can define and use your own namespaces
+}}
+
+\end{slide}
+
+\begin{slide}
+  \subsection{Metadata modele}
+
+  S³ownik (\emph{Controlled vocabulary\/}): nie posiada relacji miêdzy has³ami,
+  Uncontrolled vocabulary: folksonomy, tags
+
+  Taksonomia:
+  to s³ownictwo kontrolowane posiadaj±ce relacje hiperonimii
+  (pojêcie szersze/pojêcie wê¿sze)
+  rodzic-dziecko
+
+  Tezaurus -- to taksonomia posiadaj±ca tak¿e niektóre ,,inne'' relacje,
+  na przyk³ad skojarzeniowe
+
+  \colorbox{xxlightblue}{\vbox{
+  The associative relationship is a relationship between two concepts
+  which do not belong to the same hierarchical structure, although
+  they have semantic or contextual similarities RT = related term
+  
+  Other useful relations: equivalent/synonim (auto=car); foreign
+  languages equvalents}}
+
+  \colorbox{xxlightblue}{\vbox{
+  Ontology (informal definition)
+  An ontology is a model of (a relevant part of) the world, listing the types of object, 
+  the relationships that connect them, and constraints on the ways that objects 
+  and relationships can be combined.
+}}
+\end{slide}
+
+\begin{slide}
+  \subsection{Flickr }
+  
+  \vbox to0pt{\kern-9mm
+    \begin{flushright}
+      \includegraphics[width=.6\textwidth]{MemberSince2006.png}
+      \end{flushright}
+\vss
+  }
+
+  \begin{center}
+  \includegraphics[width=.35\textwidth]{mediolan_zdjecie_4.png}
+  \includegraphics[width=.50\textwidth]{mediolan_zdjecie_3.png}
+  \end{center}
+
+\end{slide}
+
+\begin{slide}
+\parskip0pt
+\advance\baselineskip-2pt
+  \subsection{Dodawanie opisów. Po co? }
+
+  \textbf{Opis~/~Wyszukiwanie zdjêcia}
+
+  Na przyk³ad pamiêtam, ¿e jaki¶ czas temu w~Sopocie odby³ siê turniej
+  rugby. Dok³adnie nie pamiêtam, w~którym roku, wiem ¿e by³ to turniej
+  o~mistrzostwo Europy juniorów U-18 albo U-19.
+  Szukam zdjêcia gruziñskiego rugbysty, którego
+  nazwiska oczywi¶cie nie pamiêtam.\\
+  Dodanie do zdjêcia stosownych tagów -- im wiêcej tym lepiej --~pozwoli
+  na odnalezienie tego co szukamy:
+
+  \begin{flushleft}
+    \texttt{sopot rugby gruzja u18}\quad lub\quad
+    \texttt{sopot rugby gruzja u19}
+  \end{flushleft}
+
+    \colorbox{xxlightblue}{\vbox{
+  EXIF: \texttt{UserComment} (z~braku w~standardzie EXIF czego¶ bardziej
+  adekwatnego, oddzielone przecinkami tagi wstawiam do pola
+  UserComment.)}}
+  \bigskip
+  
+  \textbf{Autorstwo / status prawny (licencja)}
+
+  Moje zdjêcia udostêpniam na licencji CC. Dziêki wstawieniu stosownych
+  informacji zdjêcie nie
+  jest anonimowe a licencja na jego rozpowszechnianie jawnie okre¶lona:
+  
+  \colorbox{xxlightblue}{\vbox{
+  EXIF: \texttt{ Artist} oraz \texttt{Author} (dane autora czyli moje)
+  plus \texttt{Copyright} (¿e zdjêcie jest na licencji CC)}}
+  
+  \bigskip
+  
+  \textbf{Robienie wra¿enia na rodzinie i~przyjacio³ach (\emph{Impressive for family \& friends\/})}
+
+  Zdjêcia geotagowane mo¿na pokazywaæ na mapach
+
+    \colorbox{xxlightblue}{\vbox{
+        EXIF: \texttt{GPSLongitudeRef}, \texttt{GPSLongitude}, \texttt{GPSLatitudeRef},
+        \texttt{GPSLatitude}  oraz \texttt{GPSAreaInformation}}}
+  
+ \end{slide}
+
+\begin{slide}
+\parskip0pt
+\advance\baselineskip-2pt
+  \subsection{Dodawanie opisów. Czym i~dlaczego Emacs }
+
+  Opisy maj± byæ dodawane szybko (bo zdjêæ jest du¿o).
+
+  Wype³nianie formularza/okna dialogowego (standard w aplikacjach GUI) jest zbyt czasoch³onne.
+
+  Rozwi±zanie: stosownie omakrowany edytor programistyczny, w moim przypadku
+  Emacs (kopiuj, wklej, skróty klawiszowe, bloki itp.)
+
+  
+  \vbox to 0mm{
+    \hbox to \textwidth{\kern10mm%%
+    \includegraphics[width=.4\textwidth]{mediolan_zdjecie_10.png}}
+    \vss}
+\begin{center}
+  \includegraphics[width=.35\textwidth]{mediolan_zdjecie_7.png}
+  \includegraphics[width=.50\textwidth]{mediolan_zdjecie_9.png}
+  \end{center}
+\end{slide}
+
+\begin{slide}
+\advance\baselineskip-2pt
+  \subsection{Co jest dodawane}
+
+Exiftool pozwala obejrzeæ/zmodyfikowaæ metadane
+
+  
+\colorbox{xxlightblue}{\vbox{
+    \begin{tt}
+    \#\# wypisz wszystkie tagi (-a) w formacie RDF (-X)\\
+    exiftool -a -X IMG20170304094013.jpg 
+    \#\# wypisz wszystkie tagi EXIF\\
+    exiftool -EXIF':* IMG20170304094013.jpg 
+\end{tt}
+}}
+
+\begin{verbatim}
+  xmlns:IFD0='http://ns.exiftool.ca/EXIF/IFD0/1.0/
+  xmlns:ExifIFD='http://ns.exiftool.ca/EXIF/ExifIFD/1.0/
+  xmlns:XMP-pdf='http://ns.exiftool.ca/XMP/XMP-pdf/1.0/
+  xmlns:GPS='http://ns.exiftool.ca/EXIF/GPS/1.0/
+
+  <IFD0:Artist>Creator: Tomasz Przechlewski</IFD0:Artist>
+  <XMP-pdf:Author>Creator: Tomasz Przechlewski</XMP-pdf:Author>
+  <IFD0:Copyright>Licence: CC Attribution</IFD0:Copyright>
+  <ExifIFD:UserComment>test, selfportrait, cycling [http://www.flickr.com/photos/tprzechlewski/33248495615/]</ExifIFD:UserComment>
+  <ExifIFD:ImageUniqueID>http://www.flickr.com/photos/tprzechlewski/33248495615/</ExifIFD:ImageUniqueID>
+  <GPS:*> ... </GPS:*> 
+
+\end{verbatim}
+
+\colorbox{xxlightblue}{\vbox{
+\begin{tt}
+%\begin{verbatim}
+\# Zapisz nowe warto¶ci znaczników (-TagName='Warto¶æ')\\
+  exiftool  -ImageUniqueID='\emph{flickrURL}' -UserComment='\emph{flickrTags}' -Artist='\emph{tp}'
+  -Author='\emph{tp}' -Copyright='Licence: CC Attribution' \\
+  -ImageDescription='\emph{Opis}' 
+%\#exiftool -GPSLongitudeRef=E -GPSLongitude=18.559 \\
+%\#   -GPSLatitudeRef=N -GPSLatitude=54.439 -GPSAreaInformation='Sopot\#Molo-poczatek'
+\end{tt}
+%\end{verbatim}
+%#exiftool -GPSLongitudeRef=E -GPSLongitude=18.559
+%#   -GPSLatitudeRef=N -GPSLatitude=54.439 -GPSAreaInformation='Sopot#Molo-poczatek'
+}}
+\end{slide}
+
+\begin{slide}
+  \advance\baselineskip-2pt
+  \subsection{Co jest dodawane cd. (wspó³rzêdne geograficzne)}
+
+  \colorbox{xxlightblue}{\vbox{
+\begin{tt}
+  %\begin{verbatim}
+exiftool -GPSLongitudeRef=E -GPSLongitude=18.559
+   -GPSLatitudeRef=N -GPSLatitude=54.439 -GPSAreaInformation='Sopot\#Molo-poczatek'
+%\end{verbatim}
+\end{tt}
+}}
+
+\subsection{Exiftool -- przyk³ady}
+
+  \begin{small}
+\begin{verbatim}
+# Zapisz Artist do a|b|c.jpg (albo directory ./images):
+exiftool -artist="Phil Harvey" -copyright="2011 Phil Harvey" a.jpg b.jpg c.jpg
+exiftool -artist="Phil Harvey" -copyright="2011 Phil Harvey" ./images
+
+# Zapisz ImageUniqueID|UserComment|Artist|Author|Copyright|ImageDescription
+exiftool  -ImageUniqueID='flickrURL' -UserComment='tags' -Artist='tp'
+  -Author='tp' -Copyright -ImageDescription='Opis' file.jpg
+
+# Zapisz wspó³rzêdne:
+exiftool -GPSLongitudeRef=E -GPSLongitude=139.7513889
+   -GPSLatitudeRef=N -GPSLatitude=35.685 -GPSAreaInformation='Sopot' file.jpg
+
+# Wypisz warto¶æ taga Model 
+exiftool -Model IMG_20170304_161946.jpg
+Camera Model Name  : Redmi 3S
+
+# Wypisz wszystko co dotyczy autora w s³owniku XMP:
+exiftool -xmp:author:all -a image.jpg
+\end{verbatim}
+  \end{small}
+
+  \end{slide}
+
+
+\begin{slide}
+\subsection{Exiftool -- przyk³ady cd.}
+
+\begin{small}
+\begin{verbatim}
+# skopiuj tagi z src.jpg do dst.jpg
+exiftool -tagsfromfile src.jpg dst.jpg
+
+# usuñ tagi z dst.jpg image, skopiuj tagi EXIF z src.jpg.
+exiftool -all= -tagsfromfile src.jpg -exif:all dst.jpg
+
+# dodaj (+=) 32 sekundy do wszystkich tagów zawieraj±cych czas
+# we wszystkich plikach w katalogu ./Images
+exiftool -alldates+=00:00:32 ./Images
+
+# usuñ wszystkie tag GPS
+exiftool -gps:all= *.jpg
+\end{verbatim}
+
+%% # Create KML from set of images
+%% #!/bin/bash
+%% # Create KML from geotagged photos
+%% FMTDIR=$HOME/.config/exiftool
+%% cat $FMTDIR/kml-header.fmt > out.kml
+
+%% # -n -r -q numerical tags/resursive/quiet
+%% # -p FMTFILE = Print output in specified format
+%% exiftool -n -r -q -p $FMTDIR/kml-placemark.fmt . >> out.kml
+
+%% cat $FMTDIR/kml-trailer.fmt >> out.kml
+
+\end{small}
+
+  
+%  \begin{center}
+%    %\includegraphics[bb=1 1 500 425,clip,width=.400\textwidth]{mediolan_zdjecie_15.png}
+%    %\includegraphics[bb=1 1 500 300,clip,width=.570\textwidth]{mediolan_zdjecie_14.png}
+%    \includegraphics[bb=1 1 500 345,clip,width=.400\textwidth]{mediolan_zdjecie_15.png}
+%    \includegraphics[bb=1 1 500 242,clip,width=.570\textwidth]{mediolan_zdjecie_14.png}
+%  \end{center}
+
+%%\begin{small}
+%%  Syncing photos with GPS receiver log (GPX format):
+%% 
+%%\begin{verbatim}
+%%# rename filename to unique ones
+%%My_rename_photo_files.sh
+%%# defining camera time offset:
+%%My-exif-datetime -b gps_display_time -f picture -o GMT_offset
+%%
+%%# adding GPS data from FILE.gpx (-f FILE.gpx)
+%%My-photo-sync.sh -f ~/GPS/20160212.gpx -a
+%%#gpsPhoto.pl --dir=DIR --gpsfile=FILE --timeoffset=OFFSET --overwrite-geotagged --kml NAME.kml
+%%
+%%# Conversion to KML (for google maps/OSM import)
+%%mk_kml.pl -gpx FILE.gpx -log FILE.log -name 'KML File Title/Name' > FILE.kml
+%%\end{verbatim}
+%%\end{small}
+
+%% \end{slide}
+
+\vbox to0pt{\kern-20mm
+  \begin{flushright}
+    \includegraphics[width=.55\textwidth]{exif-pilot-screen.png}
+  \end{flushright}
+  \vss
+}
+
+
+\subsection{Aplikacja GUI}
+
+Exif pilot
+
+
+\end{slide}
+
+
+
+
+\begin{slide}
+  \subsection{Google mymaps}
+
+  Utworzony poleceniem \texttt{mk\_kml.pl} plik KML mo¿e byæ wy¶wietlany
+  na GoogleMaps albo podobnym.
+
+  Zdjêcia s± pobierane z \texttt{flickr.com}. Mo¿na z~dowolnego serwera, ale je¿eli
+  nie dysponujemy w³asnym,
+  to jest problem z~jakiego (tzw. \emph{znikaj±ca chmura\/})
+  
+    \colorbox{xxlightblue}{\vbox{
+\begin{tt}
+  https://www.google.pl/maps/d/
+    \end{tt}}}
+    
+  \begin{center}
+    \includegraphics[width=.41\textwidth]{MediolanBergamo0.png}
+    \includegraphics[width=.555\textwidth]{MediolanBergamo1.png}
+\end{center}
+\end{slide}
+
+\begin{slide}
+  \subsection{umap.fr}
+
+  KML wy¶wietlany na \texttt{umap.fr} (zamiast na GoogleMaps)
+  
+  \colorbox{xxlightblue}{\vbox{
+\begin{tt}
+%%
+%%\begin{verbatim}
+https://umap.openstreetmap.fr/en/map/italy2016{\textunderscore}71547\#13/45.4687/9.1960
+%%\end{verbatim}
+  \end{tt}}}
+  
+\begin{center}
+\includegraphics[width=.5\textwidth]{BergamoMediolan5.png}
+\end{center}
+\end{slide}
+
+
+\begin{slide}
+  \subsection{KML (google maps)}
+
+\begin{small}
+\begin{verbatim}
+<Placemark><name>IMG_20170304_094013.jpg</name>
+ <description><![CDATA[<a href='http://www.flickr.com/tprzechlewski/33248495615'>
+  <img src='https://farm4.staticflickr.com/3852/33248495615_1537851166_m.jpg' 
+    width='200' /></a><br><a href='http://www.flickr.com/tprzechlewski/33248495615'>#fullSize</a>]]>
+  </description>
+ <ExtendedData>
+   <Data name='gx_media_links'>
+     <value>https://farm4.staticflickr.com/3852/33248495615_1537851166_m.jpg</value>
+   </Data>
+ </ExtendedData>
+ <Point>
+  <coordinates>18.05169167,54.71651111</coordinates>
+ </Point>
+</Placemark>
+\end{verbatim}  
+\end{small}
+
+\subsection{Markdown (umap.fr)}
+
+\begin{small}
+\begin{verbatim}  
+<description>
+{{https://farm4.staticflickr.com/3852/33248495615_1537851166_m.jpg}}
+[[http://www.flickr.com/tprzechlewski/33248495615|enlarge/powieksz]]
+</description>
+\end{verbatim}  
+\end{small}
+
+\end{slide}
+
+\begin{slide}
+%%%%%%%%%%%%%
+  \begin{minipage}{.45\hsize}
+\begin{flushright}
+  \hbox{\kern10mm\includegraphics[width=.8\hsize]{SopotMolo_poczatek.jpg}\kern3mm}
+  {\tiny
+  \hbox{\texttt{\kern10mm https://www.flickr.com/photos/tprzechlewski/91096674/}}}%
+\end{flushright}
+\end{minipage}
+\begin{minipage}{.50\hsize}
+  \vbox to 25mm{%\vss
+    \raggedright
+    Magazynujê zdjêcia
+    na flickr.com od 2006~r (dowód obok --~molo w~Sopocie z~lutego 2005~r., przes³ane na flickr.com w~styczniu 2006~r.).
+    \vss
+\begin{flushleft}\bf
+\qquad Koniec $|$ Dziêkujê
+\end{flushleft}
+\kern-2.7mm
+}
+%%
+\end{minipage}
+\end{slide}
+\end{document}
+
+%http://www.davidkennardphotography.com/blog/851-getting-organised-photo-filenames-metadata.xhtml
+%google: exiftool ImageUniqueID
+
+% Local Variables:
+% TeX-master: ""
+% mode: latex
+% coding: iso-8859-2
+% ispell-local-dictionary: "polish"
+% End:
+
