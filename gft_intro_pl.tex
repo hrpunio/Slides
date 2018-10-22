@@ -177,6 +177,7 @@ API \url{https://developers.google.com/fusiontables/}
 \endgroup
 
 \end{slide}
+
 \begin{slide}
   \subsection{KML}
 \begin{small}
@@ -210,6 +211,64 @@ API \url{https://developers.google.com/fusiontables/}
 \end{verbatim}
 \end{small}
 \end{slide}
+
+\begin{slide}
+  \subsection{KML przyk³ad}
+  \begin{small}
+\begin{flushright}
+\vbox to0pt{\hsize=\textwidth
+  \includegraphics[width=.66\hsize]{kml-example-0.png}
+  \vss
+}
+\end{flushright}
+
+    \advance\baselineskip-9pt
+\begin{verbatim}
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://earth.google.com/kml/2.0">
+<Document>
+  <Placemark>
+   <name>Gdynia</name>
+   <Point>
+      <coordinates>
+   18.5318800,54.5188900
+      </coordinates>
+   </Point>
+  </Placemark>
+
+ <Placemark>
+   <rname>Hel-Elbl±g-WawA</name>
+    <LineString>
+      <coordinates>
+    18.801300,54.6081400 19.4088400,54.1522000 21.011780,52.229770
+      </coordinates>
+    </LineString>
+  </Placemark>
+
+<Placemark> 
+ <Polygon>   
+   <name>Sopot-Poznañ-WawA</name>
+  <outerBoundaryIs> 
+   <LinearRing>
+      <coordinates>
+    18.560000,54.441800 16.929930,52.406920 19.466670,51.750000
+    21.011780,52.229770
+      </coordinates>
+   </LinearRing> 
+  </outerBoundaryIs> 
+</Polygon>
+</Placemark>
+</Document>
+</kml>
+\end{verbatim}
+
+
+\end{small}
+\end{slide}
+
+
+
+
 
 \begin{slide}
   \subsection{KML vs GPX}
@@ -756,36 +815,39 @@ PIS = 43; PSL = 507; PO = 60; SLD = 191 obwodów}}
 
 % %%%%%%%%%%%%
 \begin{slide}
+  \subsection{Materia³y do pobrania}
   %%%%%%%%%%%%%%
-  \null\vspace{1cm}
+  %\null\vspace{1cm}
 
-  Przyk³adowe mapy:
-  
-  \begin{footnotesize}
-    \url{https://www.google.com/fusiontables/DataSource?docid=1H2njyUIH4z7sFEfZXBlI78obtJAagGaTnd0LFfPg}\\
-    \url{https://www.google.com/fusiontables/DataSource?docid=1cZh1EJhxXwgXpJBW8fH6I0hFpyVSU0hqjPwOepJf}\\[9pt]
-  \end{footnotesize}
+  %%Przyk³adowe mapy:
+  %%\begin{footnotesize}
+  %%  \url{https://www.google.com/fusiontables/DataSource?docid=1H2njyUIH4z7sFEfZXBlI78obtJAagGaTnd0LFfPg}\\
+  %%  \url{https://www.google.com/fusiontables/DataSource?docid=1cZh1EJhxXwgXpJBW8fH6I0hFpyVSU0hqjPwOepJf}\\[9pt]
+  %%\end{footnotesize}
 
-  Dane/Slajdy/Dodatkowe materia³y:
-  
+%%  Dane/Slajdy/Dodatkowe materia³y:
+\begin{flushleft}  
   \begin{small}
     \url{https://github.com/hrpunio/Data}\\
-    \url{https://github.com/hrpunio/Slides}\\[9pt]
+    \url{https://github.com/hrpunio/Slides}\\
+    \url{https://github.com/hrpunio/Z-MISC/tree/master/GFT}\\
     \url{http://www.smalldatajournalism.com/projects/one-offs/mapping-with-fusion-tables/}
 \end{small}
-
+\end{flushleft}
 \vspace{1cm}
-  
+%%
+\begin{center}
 \begin{minipage}{.25\hsize}
 \hbox to\textwidth{\hss\includegraphics[width=.9\hsize]{gft_icon}}%
 \end{minipage}
 %%%%
-\begin{minipage}{.7\hsize}
+\begin{minipage}{.4\hsize}
   \begin{flushleft}
     %%\url{}\\
 \textbf{Dziêkujê za uwagê}
 \end{flushleft}
 \end{minipage}
+\end{center}
 \end{slide}
 %%
 
