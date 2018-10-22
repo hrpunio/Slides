@@ -1,0 +1,369 @@
+\documentclass{article}
+\pagestyle{empty}
+%\usepackage{pdfpages}
+\usepackage{graphicx,xcolor}
+\usepackage{geometry}
+\geometry{total={180mm,150mm},
+ left=20mm,
+ top=20mm}
+\usepackage{fontspec}
+\setmainfont[Ligatures=TeX,Scale=0.95,Numbers=OldStyle]{Iwona}
+\def \PDFCurrentFile{stat_w_03.pdf}
+\newenvironment{slide}[1]{%%%
+  {\color{green}\vbox to0pt{\noindent \vrule height 140mm width1\textwidth\vss}}
+  \vspace{3mm}%% <--topsep
+\noindent%
+\begin{minipage}{.9\textwidth}
+\includegraphics[page=#1,clip,trim=0 0 0 0]{\PDFCurrentFile}
+\end{minipage}%
+\par
+{\color{orange}\vbox to0pt{\noindent \vrule height 40mm width1.0\textwidth\vss}}
+\begin{minipage}{.9\textwidth}
+  \thepage::\par
+}{\end{minipage}\par
+\clearpage}
+%%%%%%%%%%%
+\newenvironment{xslide}[2]{%%%
+  {\color{green}\vbox to0pt{\noindent \vrule height 140mm width1\textwidth\vss}}
+  \vspace{3mm}%% <--topsep
+\noindent%
+\begin{minipage}{.9\textwidth}#1
+\end{minipage}%
+\par
+{\color{orange}\vbox to0pt{\noindent \vrule height 40mm width1.0\textwidth\vss}}
+\begin{minipage}{.9\textwidth}#2
+  \thepage::\par
+}{\end{minipage}\par
+\clearpage}
+%%%%%%%%%%%%
+\definecolor{orange}{rgb}{.80,0.84,0.73}
+\definecolor{green}{rgb}{.80,0.84,0.13}
+\begin{document}
+
+%%\includepdf[pages=21]{stat_w_03.pdf}
+%%\includegraphics[page=21]{stat_w_03.pdf}
+
+
+\begin{xslide}{
+    {\color{white}\vbox to0pt{\noindent \vrule height 140mm width.8\textwidth\vss}}
+    \begin{minipage}{.8\textwidth}
+      \vspace{30mm}
+      \begin{center}
+        \begin{Huge}
+      Wprowadzenie do statystyki\\
+      \large cz.~1\\[1mm]
+      \Large
+      Podstawowe pojęcia i opis statystyczny
+        \end{Huge}
+      \end{center}
+      \vspace{44mm}
+    \end{minipage}
+  }{}
+\end{xslide}  
+
+
+\def \PDFCurrentFile{stat_w_03.pdf}
+
+
+
+\begin{slide}{2}
+\textbf{Jednostka statystyczna}: jednostki statystyczne w danej populacji różnią się od innych jednostek
+spoza danej populacji poprzez swoje własności wspólne (cechy stałe), 
+jednocześnie różnią się między sobą cechami (cechy zmienne)
+
+\textbf{Cechy statystyczne} -- właściwości jednostek statystycznych
+Cechy stałe -- jednakowe dla wszystkich jednostek badania: rzeczowa
+(co? kto? jest badane/y) przestrzenna (gdzie?)  czasowa (kiedy?)
+
+Cecha ilościowa (quantitative), np. numer buta, wiek;
+Cecha jakościowa (qualitative), np. płeć
+
+\end{slide}
+
+\begin{slide}{3}
+Four measurement scales: nominal (nominalna), ordinal (porządkowa), interval (interwałowa) and ratio (ilorazowa)
+
+Skale interwałowe nie nie mają \textbf{prawdziwego zera} (brak cechy), co powoduje subtelny problem przy mnożeniu.
+
+Przykładowo temperatura w~skali Celsjusza jest skalą interwałową: $2 \times 0 = 0$C (a~powinno być 2 razy cieplej niż przy temperaturze $0$C;
+W skali Kelvina tak jest 2 $\times$ 273,15 = 546,3 ale dla zera bezwzględego $2 \times 0 = 0$K się zgadza z tym czego należało oczekiwać,
+tj. że mnożenie przez $0$ daje $0$/brak cechy)
+
+\end{slide}
+
+\begin{slide}{4}
+
+Główny Urząd Statystyczny (GUS) – 
+podległy Prezesowi RM urząd 
+zajmujący się zbieraniem/udostępnianiem informacji statystycznych na temat różnych
+dziedzin życia publicznego/prywatnego.
+
+W~2016 wydatki GUS wyniosły 409,7 mln PLN. \textbf{Średnie zatrudnienie} (co to?)
+w przeliczeniu na pełne etaty wyniosło 5834 osoby.
+
+EUROSTAT -- urząd zajmujący się sporządzaniem prognoz/analiz statystycznych dot.~obszaru UE/EFTA,
+i~koordynowaniem/monitorowaniem prac narodowych urzędów statystycznych
+(unifikacja metod badań/klasyfikacji)
+  
+\end{slide}
+
+\begin{slide}{5}
+Dane statystyczne możemy w ogólności podzielić na \textbf{dane
+  przekrojowe} (cross-sectional data) -- wiele jednostek obserwowanych
+w~jednym momencie/okresie czasu; \textbf{szeregi czasowe}
+(time-series) -- jedna jednostka obserwowana w~wielu
+momentach/okresach czasu; \textbf{dane panelowe} (panel data,
+cross-sectional time-series data) -- wiele jednostek obserwowanych
+w~wielu m/o czasu.
+
+Mówiąc inaczej:
+\textbf{Szeregi czasowe}: dane oznaczone stemplem czasu;
+\textbf{Dane przestrzenne} (spatial): dane oznaczone pozycją na powierzchni ziemi.
+  
+\end{slide}
+
+\begin{slide}{6}
+  Individual/Discrete/Continuous (Data) Series;
+  
+  W innym aspekcie używa się \textbf{individual} vs \textbf{organizational} data, co oznacza dane na poziomie
+  indywidualnym albo na poziomie organizacji (przedsiębiorstwa)
+\end{slide}
+
+\begin{slide}{7}
+  Discrete (Data) Series
+
+  Rozkład częstości (rozkład empiryczny zmiennej, szereg rozdzielczy):
+  przyporządkowanie kolejnym wartościom zmiennej (xi) odpowiadających
+  im liczebności (ni) lub udziałów.  Przedstawia \textbf{strukturę
+  zbiorowości} dla określonej cechy (stąd analiza struktury);
+  \textbf{Frequency table/distribution} vs \textbf{Relative frequency table/distribution}
+    
+\textbf{Tablica statystyczna}: Część liczbowa + część opisowa: tytuł; boczek (nazwy
+wierszy); główka (n.~kolumn); źródło danych; ewentualne uwagi/objaśnienia.
+
+\end{slide}
+
+\begin{slide}{8}
+Continuous (Data) Series
+
+\textbf{Zasady grupowania danych}:
+1)~Równe rozpiętości przedziałów;
+2)~Niezerowe liczebności wszystkich przedziałów;
+3)~Zdefiniowane wszystkie końce przedziałów;
+4)~Niedominująca liczebność przedziału;
+5)~,,Dobrze wyglądające'' końce przedziałów  (kończące się na zero/pięć/liczbą całkowitą)
+
+Liczba przedziałów: określona konwencjami w~domenie zastosowań/celem badania. Raczej nie mniej niż 6--8.
+(In case of doubt copy good reference.)
+
+\end{slide}
+
+\begin{slide}{10}
+   cumulative frequency (table)
+
+   empirical \textbf{distribution function}
+\end{slide}
+ 
+\begin{slide}{11}
+\end{slide}
+
+\begin{slide}{12}
+  Mean (or Average); Median; Mode
+
+  Dispersion: variance, standard deviation, range (rozstęp)
+
+  Skewness (positive/negative)
+
+  Concentration
+  
+\end{slide}
+
+\begin{slide}{13}
+\end{slide}
+
+\begin{slide}{14}
+\end{slide}
+
+\begin{slide}{15}
+\end{slide}
+
+\begin{slide}{16}
+\end{slide}
+
+\begin{slide}{17}
+\end{slide}
+
+\begin{slide}{18}
+\end{slide}
+
+\begin{slide}{19}
+\end{slide}
+
+\begin{slide}{20}
+Variance
+\end{slide}
+
+\begin{slide}{21}
+  \textbf{Odchylenie standardowe} (\emph{standard deviation});
+  \textbf{Odchylenie przeciętne} (\emph{average absolute deviation});
+  Rozstęp ćwiartkowy, rozstęp międzykwartylowy (interquartile range (IQR), midspread);
+  Odchylenie ćwiartkowe
+  Odchylenie ćwiartkowe (\emph{Quartile coefficient of dispersion\/})
+
+\end{slide}
+
+\begin{slide}{22}
+\end{slide}
+
+\begin{slide}{23}
+\end{slide}
+
+\begin{slide}{24}
+\end{slide}
+
+\begin{slide}{25}
+ \emph{Skewness\/}
+\end{slide}
+
+\begin{slide}{26}
+  \noindent \kern8mm
+  \includegraphics[width=11.5cm]{stonoga_vs_pis.png}
+\end{slide}
+
+%%\begin{slide}{27}
+%%\end{slide}
+
+\begin{slide}{28}
+Herfindahl-Hirschman Index (HHI): commonly accepted measure of market
+concentration. It is calculated by squaring the market share of each
+firm competing in a market, and then summing the resulting numbers,
+and can range from close to zero to 10,000. The U.S. Department of
+Justice uses the HHI for evaluating potential mergers issues.
+(cf https://www.investopedia.com/terms/h/hhi.asp)
+
+Przykład: na rynku udziały 20 podmiotów są następujące:
+
+$F_1 = 40\%, F_2 = 30\%, F_3 = 14\%, F_4$--$F_20 = 1\%$ każda;
+
+HHI = $40^2 + 30^2 + \dots 1^2$ = = 1,600 + 900 + 196 + 20 = 2,716
+\end{slide}
+
+\begin{slide}{29}
+\end{slide}
+
+%%\begin{slide}{30}
+%%\end{slide}
+
+
+\def \PDFCurrentFile{stat_w_05.pdf}
+
+\begin{slide}{2}
+\end{slide}
+
+\begin{slide}{3}
+\end{slide}
+
+\begin{slide}{4}
+\end{slide}
+
+%%\begin{slide}{5}
+%%\end{slide}
+
+\begin{slide}{14}
+\end{slide}
+
+\begin{slide}{15}
+\end{slide}
+
+\begin{slide}{16}
+\end{slide}
+
+\begin{slide}{17}
+\end{slide}
+
+\begin{slide}{18}
+\end{slide}
+
+\begin{slide}{19}
+\end{slide}
+
+\begin{slide}{20}
+\end{slide}
+
+\begin{slide}{21}
+\end{slide}
+
+\begin{slide}{22}
+\end{slide}
+
+\begin{slide}{23}
+\end{slide}
+
+\begin{slide}{24}
+\end{slide}
+
+\begin{slide}{25}
+\end{slide}
+
+\begin{slide}{26}
+\end{slide}
+
+\begin{xslide}{
+    {\color{white}\vbox to0pt{\noindent \vrule height 140mm width.8\textwidth\vss}}
+    \begin{minipage}{.8\textwidth}
+  \subsection*{Wykresy}
+  \begin{raggedright}
+  \textbf{Dane jakościowe}: struktura (kołowy, słupkowy/barplot)
+
+  Wysokości słupków są równe odpowiednim liczebnościom (lub częstościom); szerokość słupków jest jednakowa, zalecane jest uporządkowanie
+
+  \textbf{Wykres kołowy}: Mało czytelne, gdy występuje więcej kategorii;
+  Porównanie dwóch wykresów jest trudniejsze niż dla wykresów słupkowych.
+
+  \medskip
+  
+  \textbf{Dane przekrojowe}: rozkład (słupkowy zwany także diagramem liczebości/częstości dla szeregu rozdzielczego jednostopniowego,
+  histogram dla sz.r. wielostopniowego)
+
+  \medskip
+  
+  \textbf{Szeregi czasowe}: dynamika (słupkowy, liniowy)
+
+  \medskip
+  
+  \textbf{Porównanie}: struktury, rozkładów, dynamiki (słupkowy, pudełkowy dla danych przekrojowych)
+
+  \medskip
+  
+  \textbf{Wykres pudełkowy (boxplot)}: 5 podstawowych wskaźników
+  sumarycznych na jednym wykresie: $Q_1$ dolna krawędź, $Q_3$ górna
+  krawędź, $Me$ środek pudełka; wąsy to maksimum/minimum (lub $\pm$1,5
+  $\times$ IQR)
+  
+  \textbf{Dwie zmienne}: wykresy rozrzutu (scatterplots)
+  %% http://quantup.pl/wprowadzenie-do-statystyki/chapter-analiza-opisowa.html
+  \end{raggedright}
+  \vspace{22mm}
+  \end{minipage}
+  }{}
+\end{xslide}
+
+\begin{xslide}{
+    {\color{white}\vbox to0pt{\noindent \vrule height 140mm width.8\textwidth\vss}}
+    \begin{minipage}{.8\textwidth}
+  \subsection*{Wykresy}
+
+  \includegraphics[width=5.5cm]{Nobel-Age-BoxPlot.pdf}
+  \includegraphics[width=5.5cm]{komisje_glosy_razem.png}
+
+  \kern-4mm
+  
+  \includegraphics[width=6cm]{pie_vs_bar.png}
+    \includegraphics[width=6cm]{pies_vs_bars_m.png}
+  
+  \end{minipage}
+  }{}
+\end{xslide}  
+  
+\end{document}
+
